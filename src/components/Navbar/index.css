@@ -2,13 +2,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 5%;
+  padding: 0px 8%;
   background: rgba(0, 0, 0, 0.15);
   width: 100%;
+  height: 13%;
 }
 
 .logo {
   width: 100%;
+  height: 35px;
 }
 
 .sub-container {
@@ -78,6 +80,11 @@
 }
 
 @media screen and (max-width: 768px) {
+  .features {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   .nav-links-list {
     display: none;
   }

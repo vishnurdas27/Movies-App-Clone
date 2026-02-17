@@ -1,11 +1,10 @@
 .main-container {
-  background-color: #121212; /* Standard dark theme background */
+  background-color: #121212;
   min-height: 100vh;
   width: 100%;
 }
 
 .Hero-container {
-  /* Removed background-image from here! */
   background-image: url('https://res.cloudinary.com/dfthypiat/image/upload/v1771318909/Image_j2simv.png');
   background-size: cover;
   background-position: center;
@@ -13,4 +12,37 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  width: 50vw;
+  padding: 0px 8%;
+  margin-left: 30px;
+  font-family: Roboto;
+}
+
+.hero-title {
+  font-size: 70px;
+  color: #ffffff;
+  font-weight: 450;
+  margin: 0px;
+}
+
+.hero-desc {
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 100;
+}
+
+.play-btn {
+  width: 100px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: none;
 }
