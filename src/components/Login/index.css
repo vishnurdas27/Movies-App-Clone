@@ -1,0 +1,114 @@
+/* Main Background Container */
+.Login-Main-Container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(
+      116.64deg,
+      rgba(0, 0, 0, 0.8) 0.46%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    url('https://res.cloudinary.com/dfthypiat/image/upload/v1771312478/8ccaf66f19edc15e3aa6b6a1301fd6667bf2509e_vkl0no.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.logo-container {
+  padding: 25px;
+  margin: 15px;
+}
+
+.login-title {
+  color: #e50014;
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-left: 10%;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 400px;
+  background-color: rgba(20, 20, 20, 0.9);
+  border-radius: 8px;
+  padding: 40px;
+  margin: auto;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  font-family: 'HK Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-containers {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.label {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.input {
+  height: 40px;
+  padding: 8px 16px;
+  background-color: #333333;
+  border: 1px solid #444444;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #e50014; /* Highlights red when clicking inside */
+}
+
+.login-button {
+  height: 48px;
+  margin-top: 16px;
+  background-color: #e50014;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.login-button:hover {
+  background-color: #c40011;
+}
+
+.error-message {
+  font-family: 'HK Grotesk', sans-serif;
+  color: #c40011;
+}
+
+@media screen and (max-width: 768px) {
+  .Login-Main-Container {
+    background: #000000;
+  }
+
+  .login-container {
+    background: #000000;
+  }
+}
