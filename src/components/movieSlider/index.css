@@ -1,0 +1,33 @@
+.movie-slider-item {
+  padding: 0 8px; /* Keeps the gap between posters */
+  outline: none;
+}
+
+.movie-poster {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover; 
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.movie-poster:hover {
+  transform: scale(1.05);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.slick-prev {
+  left: -25px;
+  z-index: 1;
+}
+
+.slick-next {
+  right: -25px;
+  z-index: 1;
+}
