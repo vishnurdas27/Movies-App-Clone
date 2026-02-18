@@ -1,9 +1,11 @@
 .main-container {
-  background-color: #121212;
+  background-color: #121212; /* Main dark background */
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
 }
+
+/* --- HERO SECTION STYLES --- */
 
 .Hero-container {
   background-size: cover;
@@ -23,7 +25,7 @@
   width: 50vw;
   padding: 0px 8%;
   margin-left: 30px;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
 }
 
 .hero-title {
@@ -37,15 +39,27 @@
   color: #ffffff;
   font-size: 21px;
   font-weight: 100;
+  margin-top: 20px;
+  margin-bottom: 24px;
 }
 
 .play-btn {
   width: 100px;
   height: 40px;
   background-color: #ffffff;
+  color: #121212;
+  font-weight: bold;
   border-radius: 10px;
   border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
+
+.play-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* --- SLIDERS SECTION STYLES --- */
 
 .trending-container {
   padding: 0px 50px;
@@ -60,16 +74,10 @@
   font-weight: 500;
   margin-left: 10px;
   margin-bottom: 16px;
+  font-family: 'Roboto', sans-serif;
 }
 
-.footer-section {
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
+/* --- FOOTER STYLES --- */
 
 .footer {
   color: #ffffff;
@@ -78,4 +86,82 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.footer-section {
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-size: 24px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+/* --- LOADER STYLES --- */
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Changed from 100vh to a min-height so it perfectly fits inside the slider rows without stretching the page */
+  min-height: 250px;
+  width: 100%;
+  flex-grow: 1; /* Allows it to expand if it's inside the Hero container */
+}
+
+/* --- FAILURE VIEW STYLES (Matches Figma Screenshot) --- */
+
+.failure-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 250px; /* Forms the rectangular box for slider failures */
+  background-color: #000000; /* Slightly darker than main background to create the "box" effect */
+  border-radius: 8px; /* Slight rounding for a modern look */
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+/* Remove the dark background if the failure is in the massive Hero section */
+.Hero-container .failure-view-container {
+  background-color: transparent;
+  min-height: 60vh;
+}
+
+.failure-image {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.failure-text {
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.try-again-button {
+  background-color: #ffffff;
+  color: #121212;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 24px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.try-again-button:hover {
+  opacity: 0.8;
 }

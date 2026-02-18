@@ -16,123 +16,186 @@ const apiStatusConstants = {
 }
 
 const Home = () => {
-  const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
+  const [trendingApiStatus, setTrendingApiStatus] = useState(
+    apiStatusConstants.initial,
+  )
+  const [originalsApiStatus, setOriginalsApiStatus] = useState(
+    apiStatusConstants.initial,
+  )
+
   const [trendingMovies, setTrendingMovies] = useState([])
   const [originalMovies, setOriginalMovies] = useState([])
   const [randomHeroMovie, setRandomHeroMovie] = useState({})
 
-  const getData = async () => {
-    setApiStatus(apiStatusConstants.inProgress)
-
-    const trendingUrl = 'https://apis.ccbp.in/movies-app/trending-movies'
-    const originalsUrl = 'https://apis.ccbp.in/movies-app/originals'
+  // --- API CALL 1: Trending Movies ---
+  const getTrendingMovies = async () => {
+    setTrendingApiStatus(apiStatusConstants.inProgress)
     const jwtToken = Cookies.get('jwt_token')
-
+    const trendingUrl = 'https://apis.ccbp.in/movies-app/trending-movies'
     const options = {
       method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
+      headers: {Authorization: `Bearer ${jwtToken}`},
     }
 
     try {
-      const trendingResponse = await fetch(trendingUrl, options)
-      const originalsResponse = await fetch(originalsUrl, options)
-
-      if (trendingResponse.ok && originalsResponse.ok) {
-        const trendingData = await trendingResponse.json()
-        const originalsData = await originalsResponse.json()
-
-        const randomIndex = Math.floor(
-          Math.random() * originalsData.results.length,
-        )
-        const heroMovie = originalsData.results[randomIndex]
-
-        setTrendingMovies(trendingData.results)
-        setOriginalMovies(originalsData.results)
-        setRandomHeroMovie(heroMovie)
-        setApiStatus(apiStatusConstants.success)
+      const response = await fetch(trendingUrl, options)
+      if (response.ok) {
+        const data = await response.json()
+        setTrendingMovies(data.results)
+        setTrendingApiStatus(apiStatusConstants.success)
       } else {
-        setApiStatus(apiStatusConstants.failure)
+        setTrendingApiStatus(apiStatusConstants.failure)
       }
     } catch (error) {
-      // Fixed small typo here: needs to be apiStatusConstants
-      setApiStatus(apiStatusConstants.failure)
+      setTrendingApiStatus(apiStatusConstants.failure)
+    }
+  }
+
+  // --- API CALL 2: Originals Movies ---
+  const getOriginalsMovies = async () => {
+    setOriginalsApiStatus(apiStatusConstants.inProgress)
+    const jwtToken = Cookies.get('jwt_token')
+    const originalsUrl = 'https://apis.ccbp.in/movies-app/originals'
+    const options = {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${jwtToken}`},
+    }
+
+    try {
+      const response = await fetch(originalsUrl, options)
+      if (response.ok) {
+        const data = await response.json()
+        const randomIndex = Math.floor(Math.random() * data.results.length)
+
+        setOriginalMovies(data.results)
+        setRandomHeroMovie(data.results[randomIndex])
+        setOriginalsApiStatus(apiStatusConstants.success)
+      } else {
+        setOriginalsApiStatus(apiStatusConstants.failure)
+      }
+    } catch (error) {
+      setOriginalsApiStatus(apiStatusConstants.failure)
     }
   }
 
   useEffect(() => {
-    getData()
+    getTrendingMovies()
+    getOriginalsMovies()
   }, [])
 
   const renderLoadingView = () => (
-    <div className="loader-container">
+    // eslint-disable-next-line react/no-unknown-property
+    <div className="loader-container" testid="loader">
       <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
     </div>
   )
-  // testid="loader"
 
-  const renderFailureView = () => (
+  const renderFailureView = retryFunction => (
     <div className="failure-view-container">
+      <img
+        src="https://res.cloudinary.com/dfthypiat/image/upload/v1771411603/alert-triangle_bugp8h.png"
+        alt="failure view"
+        className="failure-image"
+      />
       <p className="failure-text">Something went wrong. Please try again</p>
-      <button className="try-again-button" type="button" onClick={getData}>
+      <button
+        className="try-again-button"
+        type="button"
+        onClick={retryFunction}
+      >
         Try Again
       </button>
     </div>
   )
 
-  const renderSuccessView = () => {
-    const heroBackgroundStyle = {
-      backgroundImage: `url(${randomHeroMovie.backdrop_path})`,
-    }
-
-    return (
-      <>
-        <div className="Hero-container" style={heroBackgroundStyle}>
-          <Navbar />
-          <div className="hero-section">
-            <h1 className="hero-title">{randomHeroMovie.title}</h1>
-            <p className="hero-desc">{randomHeroMovie.overview}</p>
-            <button className="play-btn" type="button">
-              Play
-            </button>
-          </div>
-        </div>
-
-        <div className="trending-container">
-          <h1 className="slider-heading">Trending Now</h1>
-          <MovieSlider movies={trendingMovies} />
-
-          <h1 className="slider-heading">Originals</h1>
-          <MovieSlider movies={originalMovies} />
-        </div>
-        <div className="footer">
-          <div className="footer-section">
-            <FaGoogle />
-            <FaTwitter />
-            <FaInstagram />
-            <FaYoutube />
-          </div>
-          <p>Contact Us</p>
-        </div>
-      </>
-    )
-  }
-
-  const renderHomeContent = () => {
-    switch (apiStatus) {
+  const renderHeroSection = () => {
+    switch (originalsApiStatus) {
       case apiStatusConstants.inProgress:
-        return renderLoadingView()
-      case apiStatusConstants.success:
-        return renderSuccessView()
+        return (
+          <div className="Hero-container">
+            <Navbar />
+            {renderLoadingView()}
+          </div>
+        )
+
+      case apiStatusConstants.success: {
+        const heroBackgroundStyle = {
+          backgroundImage: `url(${randomHeroMovie.backdrop_path})`,
+        }
+        return (
+          <div className="Hero-container" style={heroBackgroundStyle}>
+            <Navbar />
+            <div className="hero-section">
+              <h1 className="hero-title">{randomHeroMovie.title}</h1>
+              <p className="hero-desc">{randomHeroMovie.overview}</p>
+              <button className="play-btn" type="button">
+                Play
+              </button>
+            </div>
+          </div>
+        )
+      }
       case apiStatusConstants.failure:
-        return renderFailureView()
+        return (
+          <div className="Hero-container">
+            <Navbar />
+            {renderFailureView(getOriginalsMovies)}
+          </div>
+        )
       default:
         return null
     }
   }
 
-  return <div className="main-container">{renderHomeContent()}</div>
+  const renderTrendingSlider = () => {
+    switch (trendingApiStatus) {
+      case apiStatusConstants.inProgress:
+        return renderLoadingView()
+      case apiStatusConstants.success:
+        return <MovieSlider movies={trendingMovies} />
+      case apiStatusConstants.failure:
+        return renderFailureView(getTrendingMovies)
+      default:
+        return null
+    }
+  }
+
+  const renderOriginalsSlider = () => {
+    switch (originalsApiStatus) {
+      case apiStatusConstants.inProgress:
+        return renderLoadingView()
+      case apiStatusConstants.success:
+        return <MovieSlider movies={originalMovies} />
+      case apiStatusConstants.failure:
+        return renderFailureView(getOriginalsMovies)
+      default:
+        return null
+    }
+  }
+
+  return (
+    <div className="main-container">
+      {renderHeroSection()}
+
+      <div className="trending-container">
+        <h1 className="slider-heading">Trending Now</h1>
+        {renderTrendingSlider()}
+
+        <h1 className="slider-heading">Originals</h1>
+        {renderOriginalsSlider()}
+      </div>
+
+      <div className="footer">
+        <div className="footer-section">
+          <FaGoogle className="footer-icon" />
+          <FaTwitter className="footer-icon" />
+          <FaInstagram className="footer-icon" />
+          <FaYoutube className="footer-icon" />
+        </div>
+        <p className="contact-us-text">Contact Us</p>
+      </div>
+    </div>
+  )
 }
 
 export default Home
