@@ -6,7 +6,7 @@
 .movie-poster {
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover; 
+  object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;

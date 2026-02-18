@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
+import {FaGoogle, FaYoutube, FaTwitter, FaInstagram} from 'react-icons/fa'
+
 import './index.css'
 import MovieSlider from '../movieSlider'
 import Navbar from '../Navbar'
@@ -103,6 +105,15 @@ const Home = () => {
 
           <h1 className="slider-heading">Originals</h1>
           <MovieSlider movies={originalMovies} />
+        </div>
+        <div className="footer">
+          <div className="footer-section">
+            <FaGoogle />
+            <FaTwitter />
+            <FaInstagram />
+            <FaYoutube />
+          </div>
+          <p>Contact Us</p>
         </div>
       </>
     )
