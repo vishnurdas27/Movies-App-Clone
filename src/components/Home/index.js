@@ -27,7 +27,6 @@ const Home = () => {
   const [originalMovies, setOriginalMovies] = useState([])
   const [randomHeroMovie, setRandomHeroMovie] = useState({})
 
-  // --- API CALL 1: Trending Movies ---
   const getTrendingMovies = async () => {
     setTrendingApiStatus(apiStatusConstants.inProgress)
     const jwtToken = Cookies.get('jwt_token')
@@ -51,7 +50,6 @@ const Home = () => {
     }
   }
 
-  // --- API CALL 2: Originals Movies ---
   const getOriginalsMovies = async () => {
     setOriginalsApiStatus(apiStatusConstants.inProgress)
     const jwtToken = Cookies.get('jwt_token')
