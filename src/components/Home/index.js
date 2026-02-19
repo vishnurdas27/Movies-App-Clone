@@ -117,7 +117,7 @@ const Home = () => {
 
       case apiStatusConstants.success: {
         const heroBackgroundStyle = {
-          backgroundImage: `url(${randomHeroMovie.backdrop_path})`,
+          backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.8)), url(${randomHeroMovie.backdrop_path})`,
         }
         return (
           <div className="Hero-container" style={heroBackgroundStyle}>

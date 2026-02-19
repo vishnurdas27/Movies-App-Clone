@@ -2,6 +2,7 @@
   color: #ffffff;
   padding: 5%;
   align-items: center;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,4 +23,20 @@
 
 .contact-us-text {
   cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-icon {
+    font-size: 14px;
+  }
+
+  .footer-section {
+    gap: 15px;
+  }
+
+  .contact-us-text {
+    font-size: 12px;
+  }
 }

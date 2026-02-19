@@ -27,6 +27,8 @@ const Login = () => {
 
     if (response.ok === true) {
       Cookies.set('jwt_token', data.jwt_token, {expires: 30, path: '/'})
+      localStorage.setItem('username', username)
+      localStorage.setItem('password', password)
       history.replace('/')
       setSubmitError(false)
       setErrorMsg('')
