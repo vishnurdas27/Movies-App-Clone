@@ -1,0 +1,25 @@
+.footer {
+  color: #ffffff;
+  padding: 5%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.footer-section {
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-size: 24px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.contact-us-text {
+  cursor: pointer;
+}

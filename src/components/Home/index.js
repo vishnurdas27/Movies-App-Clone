@@ -2,11 +2,10 @@ import {useState, useEffect} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
-import {FaGoogle, FaYoutube, FaTwitter, FaInstagram} from 'react-icons/fa'
-
 import './index.css'
 import MovieSlider from '../movieSlider'
 import Navbar from '../Navbar'
+import Footer from '../Footer'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -183,15 +182,7 @@ const Home = () => {
         {renderOriginalsSlider()}
       </div>
 
-      <div className="footer">
-        <div className="footer-section">
-          <FaGoogle className="footer-icon" />
-          <FaTwitter className="footer-icon" />
-          <FaInstagram className="footer-icon" />
-          <FaYoutube className="footer-icon" />
-        </div>
-        <p className="contact-us-text">Contact Us</p>
-      </div>
+      <Footer />
     </div>
   )
 }

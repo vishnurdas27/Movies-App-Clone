@@ -77,44 +77,19 @@
   font-family: 'Roboto', sans-serif;
 }
 
-/* --- FOOTER STYLES --- */
 
-.footer {
-  color: #ffffff;
-  padding: 5%;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: 'Roboto', sans-serif;
-}
-
-.footer-section {
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  font-size: 24px;
-  margin-bottom: 16px;
-  cursor: pointer;
-}
-
-/* --- LOADER STYLES --- */
 
 .loader-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* Changed from 100vh to a min-height so it perfectly fits inside the slider rows without stretching the page */
   min-height: 250px;
   width: 100%;
-  flex-grow: 1; /* Allows it to expand if it's inside the Hero container */
+  flex-grow: 1; 
 }
 
-/* --- FAILURE VIEW STYLES (Matches Figma Screenshot) --- */
+
 
 .failure-view-container {
   display: flex;
@@ -122,14 +97,14 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 250px; /* Forms the rectangular box for slider failures */
-  background-color: #000000; /* Slightly darker than main background to create the "box" effect */
-  border-radius: 8px; /* Slight rounding for a modern look */
+  min-height: 250px; 
+  background-color: #000000; 
+  border-radius: 8px; 
   margin-bottom: 20px;
   flex-grow: 1;
 }
 
-/* Remove the dark background if the failure is in the massive Hero section */
+
 .Hero-container .failure-view-container {
   background-color: transparent;
   min-height: 60vh;
