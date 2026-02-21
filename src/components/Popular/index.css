@@ -1,0 +1,46 @@
+.Popular-container {
+  background-color: #121212;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.popular-content-wrapper {
+  flex-grow: 1; 
+  padding: 40px 5%;
+}
+
+
+.movies-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 0;
+  width: 100%;
+}
+
+.movie-item {
+  display: flex;
+  justify-content: center;
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2 / 3; 
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.poster:hover {
+  transform: scale(1.05);
+}
+
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; 
+}
